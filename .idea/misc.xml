@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../../../../layout/compose-model-1632352723065.xml" value="1.3537906137184115" />
+        <entry key="../../../../../../../layout/compose-model-1632357435519.xml" value="1.3537906137184115" />
+        <entry key="../../../../../../../layout/compose-model-1632357904125.xml" value="0.2" />
+        <entry key="../../../../../../../layout/compose-model-1632359092042.xml" value="0.33" />
+        <entry key="app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.3921875" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

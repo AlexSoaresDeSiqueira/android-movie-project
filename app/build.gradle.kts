@@ -58,6 +58,7 @@ dependencies {
     implementation(UiDependencies.composeUi)
     implementation(UiDependencies.composeMaterial)
     implementation(UiDependencies.composeToolingPreview)
+    implementation(UiDependencies.coil_compose)
     implementation(CoreDependencies.lifecycleRuntimeKtx)
     implementation(CoreDependencies.activityCompose)
     testImplementation(TestDependencies.junit)
