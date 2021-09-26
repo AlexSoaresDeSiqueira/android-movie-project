@@ -15,6 +15,9 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        buildConfigField("String", "API_BASEURL", "\"https://api.themoviedb.org/3/\"")
+        buildConfigField("String", "API_KEY", "\"a4658479bb1148057cefb67dd42387f3\"")
     }
 
     buildTypes {
@@ -41,7 +44,17 @@ dependencies {
     implementation(CoreDependencies.coreKtx)
     implementation(UiDependencies.appcompat)
     implementation(UiDependencies.material)
+
+    implementation(NetworkDependencies.retrofit)
+    implementation(NetworkDependencies.converterGson)
+    implementation(platform(NetworkDependencies.okHttpBom))
+    implementation(NetworkDependencies.okhttp)
+    implementation(NetworkDependencies.loggingInterceptor)
+
+    implementation(CoreDependencies.koin)
+
     testImplementation(TestDependencies.junit)
+
     androidTestImplementation(TestDependencies.androidxJunit)
     androidTestImplementation(TestDependencies.espressoCore)
 }

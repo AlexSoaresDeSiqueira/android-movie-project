@@ -46,20 +46,33 @@ android {
 dependencies {
     implementation(project(LibModules.uiComponents))
     implementation(project(LibModules.navigation))
+    implementation(project(LibModules.network))
 
     implementation(CoreDependencies.coreKtx)
     implementation(CoreDependencies.composeNavigation)
+    implementation(CoreDependencies.lifecycleRuntimeKtx)
+    implementation(CoreDependencies.activityCompose)
+
     implementation(UiDependencies.appcompat)
     implementation(UiDependencies.material)
     implementation(UiDependencies.composeUi)
     implementation(UiDependencies.composeMaterial)
     implementation(UiDependencies.composeToolingPreview)
     implementation(UiDependencies.coil_compose)
-    implementation(CoreDependencies.lifecycleRuntimeKtx)
-    implementation(CoreDependencies.activityCompose)
+
+    implementation(NetworkDependencies.retrofit)
+    implementation(NetworkDependencies.converterGson)
+
+    implementation(CoreDependencies.coroutinesAndroid)
+    implementation(CoreDependencies.coroutinesCore)
+
+    implementation(CoreDependencies.koin)
+
     testImplementation(TestDependencies.junit)
+
     androidTestImplementation(TestDependencies.androidxJunit)
     androidTestImplementation(TestDependencies.espressoCore)
     androidTestImplementation(TestDependencies.composeJunit)
+
     debugImplementation(UiDependencies.composeUiTooling)
 }

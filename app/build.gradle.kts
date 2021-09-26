@@ -54,6 +54,7 @@ android {
 dependencies {
     implementation(project(LibModules.uiComponents))
     implementation(project(LibModules.navigation))
+    implementation(project(LibModules.network))
     implementation(project(FeatureModules.movieDetail))
     implementation(project(FeatureModules.movieHome))
 
@@ -67,9 +68,14 @@ dependencies {
     implementation(UiDependencies.coil_compose)
     implementation(CoreDependencies.lifecycleRuntimeKtx)
     implementation(CoreDependencies.activityCompose)
+
+    implementation(CoreDependencies.koin)
+
     testImplementation(TestDependencies.junit)
+
     androidTestImplementation(TestDependencies.androidxJunit)
     androidTestImplementation(TestDependencies.espressoCore)
     androidTestImplementation(TestDependencies.composeJunit)
+
     debugImplementation(UiDependencies.composeUiTooling)
 }

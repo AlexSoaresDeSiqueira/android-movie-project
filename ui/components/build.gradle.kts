@@ -46,17 +46,21 @@ android {
 dependencies {
     implementation(CoreDependencies.coreKtx)
     implementation(CoreDependencies.composeNavigation)
+    implementation(CoreDependencies.lifecycleRuntimeKtx)
+    implementation(CoreDependencies.activityCompose)
+
     implementation(UiDependencies.appcompat)
     implementation(UiDependencies.material)
     implementation(UiDependencies.composeUi)
     implementation(UiDependencies.composeMaterial)
     implementation(UiDependencies.composeToolingPreview)
     implementation(UiDependencies.coil_compose)
-    implementation(CoreDependencies.lifecycleRuntimeKtx)
-    implementation(CoreDependencies.activityCompose)
+
     testImplementation(TestDependencies.junit)
+
     androidTestImplementation(TestDependencies.androidxJunit)
     androidTestImplementation(TestDependencies.espressoCore)
     androidTestImplementation(TestDependencies.composeJunit)
+
     debugImplementation(UiDependencies.composeUiTooling)
 }
