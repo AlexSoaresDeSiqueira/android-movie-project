@@ -69,10 +69,15 @@ dependencies {
     implementation(CoreDependencies.koin)
 
     testImplementation(TestDependencies.junit)
+    testImplementation(TestDependencies.mockk)
 
     androidTestImplementation(TestDependencies.androidxJunit)
     androidTestImplementation(TestDependencies.espressoCore)
     androidTestImplementation(TestDependencies.composeJunit)
+
+    androidTestImplementation(TestDependencies.composeJunit)
+    androidTestImplementation(TestDependencies.composeUiTest)
+    debugImplementation(TestDependencies.composeUiTestManifest)
 
     debugImplementation(UiDependencies.composeUiTooling)
 }

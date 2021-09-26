@@ -7,6 +7,8 @@ object TestDependencies {
     val androidxJunit by lazy { "androidx.test.ext:junit:${TestVersions.androidxJunit}" }
     val espressoCore by lazy { "androidx.test.espresso:espresso-core:${TestVersions.espressoCore}" }
 
+    val mockk by lazy { "io.mockk:mockk:${TestVersions.mockk}" }
+
     val composeJunit by lazy { "androidx.compose.ui:ui-test-junit4:${UiVersions.compose}" }
     val composeUiTest by lazy { "androidx.compose.ui:ui-test:${UiVersions.compose}" }
     val composeUiTestManifest by lazy { "androidx.compose.ui:ui-test-manifest:${UiVersions.compose}" }
