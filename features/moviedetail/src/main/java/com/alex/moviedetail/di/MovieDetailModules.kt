@@ -1,7 +1,7 @@
 package com.alex.moviedetail.di
 
 import com.alex.moviedetail.data.datasource.MovieDetailRemoteDataSourceImpl
-import com.alex.moviedetail.data.repository.MovieRepositoryImpl
+import com.alex.moviedetail.data.repository.MovieDetailRepositoryImpl
 import com.alex.moviedetail.data.service.MovieDetailService
 import com.alex.moviedetail.domain.usecase.GetMovieDetailUseCase
 import com.alex.moviedetail.presentation.MovieDetailViewModel
@@ -20,7 +20,7 @@ class MovieDetailModules {
         viewModel {
             MovieDetailViewModel(
                 getMovieDetailUseCase = GetMovieDetailUseCase(
-                    movieRepository = MovieRepositoryImpl(
+                    movieRepository = MovieDetailRepositoryImpl(
                         movieDataSource = MovieDetailRemoteDataSourceImpl(
                             movieService = get()
                         )

@@ -8,7 +8,7 @@ import com.alex.moviedetail.domain.entity.ProductionCompanies
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-internal class MovieRepositoryImpl(
+internal class MovieDetailRepositoryImpl(
     private val movieDataSource: MovieDetailRemoteDataSource
 ) : MovieDetailRepository {
     override fun  movieDetail(movieId: Long): Flow<MovieDetailEntity> {
