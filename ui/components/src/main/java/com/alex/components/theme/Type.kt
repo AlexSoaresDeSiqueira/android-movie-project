@@ -1,4 +1,4 @@
-package com.alex.movies.ui.theme
+package com.alex.components.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

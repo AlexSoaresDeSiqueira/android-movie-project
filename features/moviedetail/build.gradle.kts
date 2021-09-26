@@ -35,13 +35,31 @@ android {
             jvmTarget = "1.8"
         }
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = versions.UiVersions.compose
+    }
 }
 
 dependencies {
+    implementation(project(LibModules.uiComponents))
+    implementation(project(LibModules.navigation))
+
     implementation(CoreDependencies.coreKtx)
+    implementation(CoreDependencies.composeNavigation)
     implementation(UiDependencies.appcompat)
     implementation(UiDependencies.material)
+    implementation(UiDependencies.composeUi)
+    implementation(UiDependencies.composeMaterial)
+    implementation(UiDependencies.composeToolingPreview)
+    implementation(UiDependencies.coil_compose)
+    implementation(CoreDependencies.lifecycleRuntimeKtx)
+    implementation(CoreDependencies.activityCompose)
     testImplementation(TestDependencies.junit)
     androidTestImplementation(TestDependencies.androidxJunit)
     androidTestImplementation(TestDependencies.espressoCore)
+    androidTestImplementation(TestDependencies.composeJunit)
+    debugImplementation(UiDependencies.composeUiTooling)
 }

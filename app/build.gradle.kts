@@ -52,7 +52,13 @@ android {
 }
 
 dependencies {
+    implementation(project(LibModules.uiComponents))
+    implementation(project(LibModules.navigation))
+    implementation(project(FeatureModules.movieDetail))
+    implementation(project(FeatureModules.movieHome))
+
     implementation(CoreDependencies.coreKtx)
+    implementation(CoreDependencies.composeNavigation)
     implementation(UiDependencies.appcompat)
     implementation(UiDependencies.material)
     implementation(UiDependencies.composeUi)

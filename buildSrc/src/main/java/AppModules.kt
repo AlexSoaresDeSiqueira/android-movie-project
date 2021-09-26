@@ -1,6 +1,3 @@
-import modules.FeatureModules
-import modules.LibModules
-
 object AppModules {
     private const val app = ":app"
 
