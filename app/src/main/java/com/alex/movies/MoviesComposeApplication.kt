@@ -2,6 +2,7 @@ package com.alex.movies
 
 import android.app.Application
 import com.alex.moviedetail.di.MovieDetailModules
+import com.alex.moviehome.di.MoviesHomeModules
 import com.alex.network.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
@@ -15,6 +16,7 @@ class MoviesComposeApplication : Application() {
             loadKoinModules(
                 networkModule
             )
+            MoviesHomeModules().loadModules()
             MovieDetailModules().loadModules()
         }
     }

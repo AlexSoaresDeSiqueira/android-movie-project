@@ -20,7 +20,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun MovieItemTextBox(name: String) {
+fun MovieItemTextBox(
+    movieName: String = "",
+    movieRating: String = ""
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -28,7 +31,7 @@ fun MovieItemTextBox(name: String) {
         verticalArrangement = Arrangement.Bottom
     ) {
         Text(
-            text = "Hello $name!",
+            text = movieName,
             textAlign = TextAlign.Center,
             fontSize = 24.sp
         )
@@ -37,7 +40,7 @@ fun MovieItemTextBox(name: String) {
             Icon(Icons.Rounded.Star, contentDescription = null, tint = Color.Yellow)
             Spacer(modifier = Modifier.width(4.dp))
             Text(
-                text = "8.9",
+                text = movieRating,
                 color = Color.Yellow,
                 fontSize = 24.sp
             )

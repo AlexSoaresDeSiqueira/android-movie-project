@@ -26,6 +26,10 @@ internal class MoviesViewModel(
     var moviesAction = mutableStateOf<MoviesViewAction>(MoviesViewAction.Default)
         private set
 
+    init {
+        getNowPlayingMovies()
+    }
+
     fun getNowPlayingMovies() {
         viewModelScope.launch {
             getNowPlayingMoviesUseCase(FIRST_PAGE_INDEX)

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
@@ -21,12 +22,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.alex.components.MoviePosterBox
 import com.alex.components.SearchViewComponent
+import com.alex.moviehome.presentation.MoviesView
 import com.alex.navigation.Screen
 
 @Composable
-fun MainMovieScreen(
-    name: String,
-    navController: NavController
+internal fun MainMovieScreen(
+    movieList: List<MoviesView>,
+    selectedItem: (Long) -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxHeight(),
@@ -45,37 +47,39 @@ fun MainMovieScreen(
             textAlign = TextAlign.Start,
             fontSize = 34.sp
         )
-        MovieList(name) {
-            navController.navigate(Screen.MovieDetail.createRouter(it))
-        }
+        MovieList(movieList, selectedItem)
     }
 }
 
 @Composable
 private fun MovieList(
-    name: String,
-    selectedItem: (String) -> Unit
+    movieList: List<MoviesView>,
+    selectedItem: (Long) -> Unit
 ) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
-        items(10) {
-            MovieListItem(name, selectedItem)
+        items(items = movieList) { movie ->
+            MovieListItem(movie, selectedItem)
         }
     }
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-private fun MovieListItem(name: String, selectedItem: (String) -> Unit) {
+private fun MovieListItem(movieView: MoviesView, selectedItem: (Long) -> Unit) {
     Card(
         modifier = Modifier
             .width(320.dp)
             .padding(14.dp),
         shape = RoundedCornerShape(10.dp),
         elevation = 5.dp,
-        onClick = { selectedItem("") }
+        onClick = { selectedItem(movieView.id) }
     ) {
-        MoviePosterBox(movieName = name)
+        MoviePosterBox(
+            movieName = movieView.title,
+            movieRating = movieView.votes,
+            movieImage = movieView.posterPath
+        )
     }
 }

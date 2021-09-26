@@ -12,9 +12,11 @@ import coil.compose.rememberImagePainter
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
-fun ImageItemComponent() {
+fun ImageItemComponent(
+    image: String = ""
+) {
     val painter = rememberImagePainter(
-        data = "https://i.ytimg.com/vi/ePpJDKfRAyM/movieposter.jpg",
+        data = image,
         builder = {
             crossfade(1000)
         }

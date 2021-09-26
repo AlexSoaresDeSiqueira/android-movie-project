@@ -9,13 +9,15 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun MoviePosterBox(
     modifier: Modifier = Modifier.height(500.dp),
-    movieName: String
+    movieName: String = "",
+    movieRating: String = "",
+    movieImage: String = ""
 ) {
     Box(
         modifier = modifier
     ) {
-        ImageItemComponent()
+        ImageItemComponent(movieImage)
         ItemGradientBackground()
-        MovieItemTextBox(movieName)
+        MovieItemTextBox(movieName, movieRating)
     }
 }

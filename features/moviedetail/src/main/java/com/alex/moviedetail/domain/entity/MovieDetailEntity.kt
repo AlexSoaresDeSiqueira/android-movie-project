@@ -5,5 +5,11 @@ internal data class MovieDetailEntity(
     val description: String,
     val backdropPath: String,
     val votes: Float,
-    val genres: String
+    val genres: List<String>,
+    val productionCompanies: List<ProductionCompanies>
+)
+
+internal data class ProductionCompanies(
+    val name: String,
+    val logoPath: String,
 )

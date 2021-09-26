@@ -12,8 +12,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
-import com.alex.moviedetail.DetailMovieScreen
-import com.alex.moviehome.MainMovieScreen
+import com.alex.moviedetail.StartMovieDetailScreen
+import com.alex.moviehome.StartMovieHomeScreen
 import com.alex.movies.ui.theme.MoviescomposeTheme
 import com.alex.navigation.Screen
 
@@ -48,10 +48,10 @@ private fun NavGraphBuilder.movieDetailComposable(navController: NavHostControll
         arguments = listOf(
             navArgument("movieId") { defaultValue = "" })
     ) { backstack ->
-        DetailMovieScreen(navController, backstack.arguments?.getString("movieId").toString())
+        StartMovieDetailScreen(navController, backstack.arguments?.getString("movieId") ?: "0")
     }
 }
 
 private fun NavGraphBuilder.mainRouterComposable(navController: NavHostController) {
-    composable(Screen.Main.route) { MainMovieScreen("", navController) }
+    composable(Screen.Main.route) { StartMovieHomeScreen(navController) }
 }

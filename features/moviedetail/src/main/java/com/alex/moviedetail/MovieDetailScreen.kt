@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,72 +25,80 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.alex.components.AppBar
 import com.alex.components.ImageItemComponent
 import com.alex.components.MoviePosterBox
-import com.alex.navigation.Screen
+import com.alex.moviedetail.presentation.MovieView
+import com.alex.moviedetail.presentation.ProductionCompaniesView
 
 @Composable
-fun DetailMovieScreen(navController: NavController, name: String) {
+internal fun DetailMovieScreen(
+    movie: MovieView,
+    navigateBack: () -> Unit
+) {
     Column(modifier = Modifier
         .fillMaxSize()
         .verticalScroll(rememberScrollState())
         .padding(bottom = 24.dp)
     ) {
         Box {
-            MoviePosterBox(modifier = Modifier.height(500.dp), movieName = name)
-            AppBar {
-                navController.navigate(Screen.Main.route) {
-                    popUpTo(Screen.Main.route) {
-                        inclusive = true
-                    }
-                }
-            }
+            MoviePosterBox(
+                modifier = Modifier.height(500.dp),
+                movieName = movie.title,
+                movieImage = movie.backdropPath,
+                movieRating = movie.votes
+            )
+            AppBar { navigateBack() }
         }
         Spacer(modifier = Modifier.height(18.dp))
         Column(
             modifier = Modifier.padding(start = 24.dp, bottom = 18.dp, end = 36.dp),
         ) {
-            GenderList()
-            MovieCastComponent()
-            MovieSynopsisComponent()
+            GenderList(movie.genres)
+            MovieCastComponent(movie.productionCompaniesView)
+            MovieSynopsisComponent(movie.description)
         }
     }
 
 }
 
 @Composable
-private fun MovieCastComponent() {
+private fun MovieCastComponent(
+    productionCompaniesView: List<ProductionCompaniesView>
+) {
     Spacer(modifier = Modifier.height(34.dp))
-    Text(text = "CAST", fontWeight = FontWeight.Bold)
+    Text(text = "PRODUCTION COMPANIES", fontWeight = FontWeight.Bold)
     Spacer(modifier = Modifier.height(18.dp))
-    CastList()
+    CastList(productionCompaniesView)
 }
 
 @Composable
-private fun CastList() {
+private fun CastList(
+    productionCompaniesView: List<ProductionCompaniesView>
+) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
-        items(4) {
-            CastListItem()
+        items(items = productionCompaniesView) {
+            CastListItem(it)
         }
     }
 }
 
 @Composable
-private fun CastListItem() {
+private fun CastListItem(
+    productionCompaniesView: ProductionCompaniesView
+) {
     Column {
         Box(modifier = Modifier
-            .size(80.dp)
+            .size(70.dp)
             .clip(CircleShape)) {
-            ImageItemComponent()
+            ImageItemComponent(image = productionCompaniesView.logoPath)
         }
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp).size(80.dp),
-            text = "Hello Compose",
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp).size(60.dp),
+            text = productionCompaniesView.name,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis
         )
@@ -97,26 +106,26 @@ private fun CastListItem() {
 }
 
 @Composable
-private fun MovieSynopsisComponent() {
+private fun MovieSynopsisComponent(synopsis: String) {
     Spacer(modifier = Modifier.height(34.dp))
     Text(text = "SYNOPSIS", fontWeight = FontWeight.Bold)
     Spacer(modifier = Modifier.height(18.dp))
-    Text("Hello Compose ".repeat(50), maxLines = 6, overflow = TextOverflow.Ellipsis)
+    Text(synopsis, maxLines = 6, overflow = TextOverflow.Ellipsis)
 }
 
 @Composable
-private fun GenderList() {
+private fun GenderList(genres: List<String>) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
-        items(4) {
-            GenderListItem()
+        items(items = genres) { genre ->
+            GenderListItem(genre)
         }
     }
 }
 
 @Composable
-private fun GenderListItem() {
+private fun GenderListItem(genre: String) {
     Surface(
         modifier = Modifier.padding(end = 8.dp, bottom = 8.dp),
         elevation = 8.dp,
@@ -124,7 +133,7 @@ private fun GenderListItem() {
     ) {
         Row {
             Text(
-                text = "Action",
+                text = genre,
                 style = MaterialTheme.typography.body2,
                 color = Color.White,
                 modifier = Modifier.padding(8.dp)

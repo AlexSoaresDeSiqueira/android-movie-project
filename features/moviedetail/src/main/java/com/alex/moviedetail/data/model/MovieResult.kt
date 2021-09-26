@@ -17,5 +17,16 @@ internal data class MovieResult(
     val votes: Float,
 
     @SerializedName("genres")
-    val genres: List<Genre>
+    val genres: List<Genre>,
+
+    @SerializedName("production_companies")
+    val productionCompanies: List<ProductionCompaniesData>
 ): Serializable
+
+internal data class ProductionCompaniesData(
+    @SerializedName("name")
+    val name: String,
+
+    @SerializedName("logo_path")
+    val logoPath: String,
+)

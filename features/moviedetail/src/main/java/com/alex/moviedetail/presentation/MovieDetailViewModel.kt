@@ -37,7 +37,12 @@ internal class MovieDetailViewModel(
                         description = entity.description,
                         backdropPath = entity.backdropPath,
                         votes = entity.votes.toString(),
-                        genres = entity.genres
+                        genres = entity.genres,
+                        productionCompaniesView = entity.productionCompanies.map {
+                            ProductionCompaniesView(
+                                name = it.name, logoPath = it.logoPath
+                            )
+                        }
                     )
                     movieDetailState.value = movieDetailState.value.copy(
                         movieData = movieView

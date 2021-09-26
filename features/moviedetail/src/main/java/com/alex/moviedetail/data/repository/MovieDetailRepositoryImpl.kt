@@ -4,6 +4,7 @@ import com.alex.moviedetail.data.datasource.MovieDetailRemoteDataSource
 import com.alex.moviedetail.data.model.MovieResult
 import com.alex.moviedetail.domain.repository.MovieDetailRepository
 import com.alex.moviedetail.domain.entity.MovieDetailEntity
+import com.alex.moviedetail.domain.entity.ProductionCompanies
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -22,8 +23,11 @@ private fun Flow<MovieResult>.parseToEntity(): Flow<MovieDetailEntity> {
             description = result.description,
             backdropPath = result.backdropPath.convertToImageUrl(),
             votes = result.votes,
-            genres = result.genres.joinToString {
-                it.name + ", "
+            genres = result.genres.map { it.name },
+            productionCompanies = result.productionCompanies.map {
+                ProductionCompanies(
+                    name = it.name, logoPath = it.logoPath.convertToImageUrl()
+                )
             }
         )
     }
