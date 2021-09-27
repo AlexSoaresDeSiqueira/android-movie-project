@@ -17,6 +17,9 @@ internal fun StartMovieHomeScreen(
         movieList = state.movieList,
         selectedItem = {
             navController.navigate(Screen.MovieDetail.createRouter(it.toString()))
+        },
+        onSearch = {
+            viewModel.search(it)
         }
     )
 }

@@ -28,7 +28,8 @@ import com.alex.navigation.Screen
 @Composable
 internal fun MainMovieScreen(
     movieList: List<MoviesView>,
-    selectedItem: (Long) -> Unit
+    selectedItem: (Long) -> Unit,
+    onSearch: (String) -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxHeight(),
@@ -36,7 +37,7 @@ internal fun MainMovieScreen(
     ) {
         SearchViewComponent(
             modifier = Modifier.padding(end = 20.dp, start = 20.dp),
-            onSearch = { }
+            onSearch = { onSearch(it) }
         )
         Spacer(modifier = Modifier.height(50.dp))
         Text(

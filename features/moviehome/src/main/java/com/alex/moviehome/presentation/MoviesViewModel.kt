@@ -3,6 +3,7 @@ package com.alex.moviehome.presentation
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.alex.moviehome.domain.entity.MovieEntity
 import com.alex.moviehome.domain.usecase.GetNowPlayingMoviesUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -19,6 +20,8 @@ internal class MoviesViewModel(
     private val getNowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
+
+    private val originalMovieListView = mutableListOf<MoviesView>()
 
     var moviesState = mutableStateOf(MoviesViewState())
         private set
@@ -38,16 +41,41 @@ internal class MoviesViewModel(
                 .catch {  }
                 .onCompletion { moviesAction.value = MoviesViewAction.HideLoading }
                 .collect { moviesEntity ->
-                    val moviesView = moviesEntity.map {
-                        MoviesView(
-                            id = it.id,
-                            title = it.title,
-                            posterPath = it.posterPath,
-                            votes = it.votes.toString()
-                        )
-                    }
-                    moviesState.value = moviesState.value.copy(movieList = moviesView)
+                    val moviesView = mapMovieEntityToView(moviesEntity)
+                    updateControlMovieListView(moviesView)
+                    updateMovieListState(moviesView)
                 }
         }
+    }
+
+    fun search(movieName: String) {
+        val findMovies: List<MoviesView> = originalMovieListView.filter {
+            it.title.contains(movieName, ignoreCase = true)
+        }
+        updateMovieListState(
+            if (movieName.isEmpty() && findMovies.isEmpty()) originalMovieListView
+            else findMovies
+        )
+    }
+
+    private fun updateMovieListState(moviesView: List<MoviesView>) {
+        moviesState.value = moviesState.value.copy(movieList = moviesView)
+    }
+
+    private fun mapMovieEntityToView(moviesEntity: List<MovieEntity>): List<MoviesView> {
+        val moviesView = moviesEntity.map {
+            MoviesView(
+                id = it.id,
+                title = it.title,
+                posterPath = it.posterPath,
+                votes = it.votes.toString()
+            )
+        }
+        return moviesView
+    }
+
+    private fun updateControlMovieListView(moviesView: List<MoviesView>) {
+        originalMovieListView.clear()
+        originalMovieListView.addAll(moviesView)
     }
 }
