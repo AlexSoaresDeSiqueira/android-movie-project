@@ -6,18 +6,18 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
-import com.alex.moviedetail.StartMovieDetailScreen
-import com.alex.moviehome.StartMovieHomeScreen
 import com.alex.movies.ui.theme.MoviescomposeTheme
+import com.alex.navigation.MovieDetailNavigation
+import com.alex.navigation.MovieHomeNavigation
 import com.alex.navigation.Screen
+import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
+    private val movieHomeNavigation: MovieHomeNavigation by inject()
+    private val movieDetailNavigation: MovieDetailNavigation by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -28,30 +28,16 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
 
-@Composable
-fun CreateNavigation() {
-    val navController = rememberNavController()
-    NavHost(
-        navController = navController,
-        startDestination = Screen.Main.route
-    ) {
-        mainRouterComposable(navController)
-        movieDetailComposable(navController)
+    @Composable
+    fun CreateNavigation() {
+        val navController = rememberNavController()
+        NavHost(
+            navController = navController,
+            startDestination = Screen.Main.route
+        ) {
+            movieHomeNavigation.createRouter(navController, this)
+            movieDetailNavigation.createRouter(navController, this)
+        }
     }
-}
-
-private fun NavGraphBuilder.movieDetailComposable(navController: NavHostController) {
-    composable(
-        Screen.MovieDetail.route,
-        arguments = listOf(
-            navArgument("movieId") { defaultValue = "" })
-    ) { backstack ->
-        StartMovieDetailScreen(navController, backstack.arguments?.getString("movieId") ?: "0")
-    }
-}
-
-private fun NavGraphBuilder.mainRouterComposable(navController: NavHostController) {
-    composable(Screen.Main.route) { StartMovieHomeScreen(navController) }
 }

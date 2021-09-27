@@ -7,7 +7,7 @@ import com.alex.navigation.Screen
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun StartMovieDetailScreen(navController: NavController, movieId: String) {
+internal fun StartMovieDetailScreen(navController: NavController, movieId: String) {
     val viewModel = getViewModel<MovieDetailViewModel>()
     val state = viewModel.movieDetailState.value
 

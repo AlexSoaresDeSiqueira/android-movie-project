@@ -7,7 +7,7 @@ import com.alex.navigation.Screen
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun StartMovieHomeScreen(
+internal fun StartMovieHomeScreen(
     navController: NavController
 ) {
     val viewModel = getViewModel<MoviesViewModel>()

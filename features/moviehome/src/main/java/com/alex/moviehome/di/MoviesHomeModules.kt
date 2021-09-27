@@ -4,7 +4,9 @@ import com.alex.moviehome.data.datasource.MoviesRemoteDataSourceImpl
 import com.alex.moviehome.data.repository.MovieRepositoryImpl
 import com.alex.moviehome.data.service.MovieService
 import com.alex.moviehome.domain.usecase.GetNowPlayingMoviesUseCase
+import com.alex.moviehome.navigation.MovieHomeNavigationImpl
 import com.alex.moviehome.presentation.MoviesViewModel
+import com.alex.navigation.MovieHomeNavigation
 import com.alex.network.ServiceFactory
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
@@ -22,6 +24,10 @@ class MoviesHomeModules {
                     )
                 )
             )
+        }
+
+        factory<MovieHomeNavigation> {
+            MovieHomeNavigationImpl()
         }
     }
 
