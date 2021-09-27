@@ -6,6 +6,7 @@ object TestDependencies {
     val junit by lazy { "junit:junit:${TestVersions.junit}" }
     val androidxJunit by lazy { "androidx.test.ext:junit:${TestVersions.androidxJunit}" }
     val espressoCore by lazy { "androidx.test.espresso:espresso-core:${TestVersions.espressoCore}" }
+    val archCoreTesting by lazy { "androidx.arch.core:core-testing:${TestVersions.archCore}" }
 
     val mockk by lazy { "io.mockk:mockk:${TestVersions.mockk}" }
 
