@@ -18,7 +18,8 @@ class MovieHomeScreenTest {
                 movieList = listOf(MoviesView(
                     id = 0, title = "Title", posterPath = "", votes = "6,9"
                 )),
-                selectedItem = {}
+                selectedItem = {},
+                onSearch = {}
             )
         }
 
