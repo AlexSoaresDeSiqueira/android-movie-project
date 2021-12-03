@@ -1,4 +1,3 @@
-name: "pipeline"
 stages:
   - build
   - test
