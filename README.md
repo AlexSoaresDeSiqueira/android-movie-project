@@ -3,7 +3,7 @@ Android movie project
 
 ## Descrição
 O objetivo deste projeto é aplicar alguns conceitos e tecnologias atuais no desenvolvimento de aplicativos android.
-[WIP] Projeto ainda em construção
+[WIP] Projeto ainda em construção teste
 
 ## Tecnologias Utilizadas
 
