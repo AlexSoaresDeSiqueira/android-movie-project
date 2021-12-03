@@ -1,0 +1,35 @@
+stages:
+  - build
+  - test
+  - ui-test
+  - playstore-beta
+
+variables:
+  LC_ALL: "en_US.UTF-8"
+  LANG: "en_US.UTF-8"
+
+before_script:
+  - export ANDROID_HOME=/Users/alex.siqueira/Library/Android/sdk
+  - export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
+  - chmod +x gradlew
+
+build:
+  stage: build
+  script:
+    - fastlane android build
+  tags:
+    - ci
+
+tests:
+  stage: test
+  script:
+    - fastlane tests
+  tags:
+    - ci
+
+ui-test:
+  stage: ui-test
+  script:
+    - fastlane ui_tests
+  tags:
+    - ci
