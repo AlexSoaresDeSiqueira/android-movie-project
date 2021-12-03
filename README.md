@@ -1,8 +1,7 @@
 # android-movie-project
 Android movie project
 
-![Pipeline Status](https://github.com/wyhaines/evita/actions/workflows/ci.yml/badge.svg)
-
+[![pipeline status](https://gitlab.com/asiqueira/android-movie-project/badges/main/pipeline.svg)](https://gitlab.com/asiqueira/android-movie-project/commits/main)
 
 ## Descrição
 O objetivo deste projeto é aplicar alguns conceitos e tecnologias atuais no desenvolvimento de aplicativos android.
